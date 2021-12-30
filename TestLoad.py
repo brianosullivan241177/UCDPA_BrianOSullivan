@@ -28,6 +28,8 @@ GoldenBoy2015.plot.bar(x="age", rot=70, title="Golden Boy 2015")
 plt.xticks(x, ['18', '19', '20', '21', '22'])
 plt.show(block=True)
 
+
+
 # Create a sample dataframe with an text index
 #plotdata = GoldenBoy2015.DataFrame("overall","age")
 # Plot a bar chart

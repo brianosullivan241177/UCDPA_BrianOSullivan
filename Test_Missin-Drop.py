@@ -1,12 +1,10 @@
 import pandas as pd
-import plotly.express as px
-import numpy as np
 
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/players_14_15_1.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality','potential','gk_positioning','player_positions'], index_col=[0])
 print(FifaAll_Players_DF.head(10)) #top records
-print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
+print(FifaAll_Players_DF.dtypes) #dataframe data types
 
 print("************************* Top Midfielders ****************************")
 Top_Midfielders_DF = FifaAll_Players_DF[((FifaAll_Players_DF.player_positions == 'LW')

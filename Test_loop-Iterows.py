@@ -23,7 +23,7 @@ Fifa_All_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/Allplaye
 
 Coleman_DF = Fifa_All_DF[(Fifa_All_DF.short_name == 'S. Coleman')]
 print(Coleman_DF)
-Coleman_Sorted_DF = Coleman_DF.sort_values(by=['Season', 'potential'], inplace=True, ascending=True)
+Coleman_Sort_DF = Coleman_DF.sort_values(by=['Season', 'potential'], inplace=True, ascending=False)
 for index, row in Coleman_DF.iterrows():
     print(index, ': ', row['short_name'], 'had the potential of',row['potential'],'in season',row['Season'] )
 

@@ -2,19 +2,27 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/Allplayers.csv',
+FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/AllPlayers_1.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality','potential'], index_col=[0])
 print(FifaAll_Players_DF.head()) #top records
 print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
-Golden_Boy_Winners_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'M. Balotelli')
+
+text = open("/users/brian/documents/FIFA_Project/Modified/Allplayers.csv", "r")
+text = ''.join([i for i in text]) \
+    .replace("Renato Sanches", "Renato Sanches GB2016").replace("M. Balotelli","M. Balotelli GB2010")
+x = open("/users/brian/documents/FIFA_Project/Modified/AllPlayers_1.csv","w")
+x.writelines(text)
+x.close()
+
+Golden_Boy_Winners_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'M. Balotelli GB2010')
                                 |(FifaAll_Players_DF.short_name == 'M. Götze')
                                 |(FifaAll_Players_DF.short_name == 'Isco')
                                 |(FifaAll_Players_DF.short_name == 'P. Pogba')
                                 |(FifaAll_Players_DF.short_name == 'R. Sterling')
 |(FifaAll_Players_DF.short_name == 'A. Martial')
-|(FifaAll_Players_DF.short_name == 'Renato Sanches')
+|(FifaAll_Players_DF.short_name == 'Renato Sanches GB2016')
 |(FifaAll_Players_DF.short_name == 'Kylian Mbappé')
 |(FifaAll_Players_DF.short_name == 'M. de Ligt')
 |(FifaAll_Players_DF.short_name == 'João Félix')

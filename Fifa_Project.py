@@ -1,13 +1,7 @@
-# *********************** Brian O'Sullivan ***********************
-# ********************** Fifa Project - Prep *********************
-# ***** Add a column to each yearly csv file and then combine ****
-# * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
-
-
 import os, glob
 from csv import writer
 from csv import reader
-import pandas as pd
+
 
 def add_column_in_csv(input_file, output_file, transform_row):
     """ Append a column in existing csv using csv.reader / csv.writer classes"""
@@ -74,8 +68,8 @@ add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_21.csv', '/Users/
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 #merge all the files that you are going to work on
-path = "/users/brian/documents/FIFA_Project/Modified/"
+path = "/users/brian/documents/fifatest1/"
 all_files = glob.glob(os.path.join(path, "p*.csv"))
 df_from_each_file = (pd.read_csv(f, sep=',') for f in all_files)
 df_merged = pd.concat(df_from_each_file, ignore_index=True, sort=False)
-df_merged.to_csv("/users/brian/documents/FIFA_Project/Modified/FIFAAllplayers.csv") #This part to create file you will use for majority of the project
+df_merged.to_csv("/users/brian/documents/fifatest1/allplayers.csv")

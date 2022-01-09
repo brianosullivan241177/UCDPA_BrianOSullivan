@@ -1,5 +1,9 @@
-import plotly.express as px
+# *********************** Brian O'Sullivan ***********************
+# ********************* Golden Boy Winners ***********************
+# *** Insights for Players from the 2021 Season ***
+# * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
+import plotly.express as px
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -85,9 +89,6 @@ print(Fifa_Top_250_DF.columns)
 
 print("**********Dtpye of top 250 ****************")
 
-print("**********Dtpye of 17 to 23 ****************")
-Fifa_17to23_DF = Fifa_Top_250_DF[(Fifa_Top_250_DF.age.astype(int)>=17) & (Fifa_Top_250_DF.age.astype(int)<=23)].groupby(['age'])['potential'].mean()
-print(Fifa_17to23_DF.dtypes)
 
 plt.figure(figsize=(12,10))
 sns.histplot(x="team_position",

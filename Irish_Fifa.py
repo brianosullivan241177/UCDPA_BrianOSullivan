@@ -38,7 +38,8 @@ fig1.update_xaxes(title_text="<b> Season </b>")
 
 
 Coleman_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
-                                |(FifaAll_Players_DF.short_name == 'L. Messi')    ]
+                                |(FifaAll_Players_DF.short_name == 'L. Messi')
+                                |(FifaAll_Players_DF.short_name == 'Cristiano Ronaldo')  ]
 print(Coleman_DF)
 
 Coleman_Season_Grouped = Coleman_DF.sort_values(['wage_eur'],ascending=False).groupby('Season').head(3)
@@ -54,7 +55,7 @@ fig2.show()
 
 
 a = sns.catplot(data=Coleman_DF, x='Season',
-                   y='overall', hue='short_name', height=6, aspect=2)
+                   y='overall', hue='short_name', height=6, aspect=2, kind="point")
 plt.show()
 #d = grouped_data.get_group(("Real Madrid", 20801))
 #sns.lineplot(x=Seamus_wages["Season"], y=Seamus_wages['overall'])

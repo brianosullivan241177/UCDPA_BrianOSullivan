@@ -16,7 +16,7 @@ print(list(rows.index))
 print("************************* First 500 records iloc ****************************")
 
 Fifa_Col_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/Allplayers.csv",
-                   usecols=['sofifa_id', 'short_name', 'height_cm', 'overall', 'potential','age','Season'], index_col=[0],nrows=500)
+                   usecols=['sofifa_id', 'short_name', 'height_cm', 'overall', 'potential','age','Season','dob'], index_col=[0],nrows=500)
 
 print(Fifa_Col_DF)
 print("************************** ")
@@ -42,3 +42,5 @@ Sort_DF = pd.DataFrame(Fifa_Col_DF, columns=['short_name','overall', 'potential'
 Sort_DF.sort_values(by=['overall', 'potential'], inplace=True, ascending=False)
 
 print(Sort_DF)
+
+#Sort_DF.loc[0, ['short_name', 'overall', 'Season']]

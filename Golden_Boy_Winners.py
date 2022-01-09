@@ -22,15 +22,12 @@ Golden_Boy_Winners_DF = FifaAll_Players_DF[
 ]
 print(Golden_Boy_Winners_DF)
 
-plot_order = Golden_Boy_Winners_DF.groupby('Season')['short_name'].sum().sort_values(ascending=False).index.values
-plot_order2 = Golden_Boy_Winners_DF.sort_values(by=['Season'], inplace=True)
-#sns.catplot(data=Golden_Boy_Winners_DF, x='Season',  y='overall',hue='short_name',ci=None, legend_out=False, order=plot_order2,
- #           )
+plot_order = Golden_Boy_Winners_DF.sort_values(by=['Season'], inplace=True)
+# Graph to show overall ratings by Golden Boy winner - R. Sterling continuing to improve
 a = sns.catplot(data=Golden_Boy_Winners_DF, x='Season',
-                   y='overall', hue='short_name', height=6, aspect=2, order=plot_order2, kind="point")
+                   y='overall', hue='short_name', height=6, aspect=2, order=plot_order, kind="point")
 
-
+# Graph to show wages by Golden Boy winner R. Sterling getting better wages
 a = sns.catplot(data=Golden_Boy_Winners_DF, x='Season',
-                   y='wage_eur', hue='short_name', height=6, aspect=2, order=plot_order2, kind="point")
+                   y='wage_eur', hue='short_name', height=6, aspect=2, order=plot_order, kind="point")
 plt.show()
-

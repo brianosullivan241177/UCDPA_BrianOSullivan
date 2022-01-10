@@ -32,9 +32,7 @@ a = sns.catplot(data=Irish_Nationality_DF, x='Season',
 plt.show()
 
 top_irish_df = Irish_Nationality_DF.head(5)
-
-Irish_Nationality_DF['dob_new'] = pd.to_datetime(Irish_Nationality_DF['dob'])
-print(Irish_Nationality_DF.dtypes)
+print(top_irish_df)
 
 
 

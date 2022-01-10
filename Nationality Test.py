@@ -7,7 +7,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/FIFAAllplayers_GB.csv',
+FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/Allplayers.csv',
                            usecols=['sofifa_id','short_name','long_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality','potential','dob'], index_col=[0])
 print(FifaAll_Players_DF.head()) #top records
@@ -16,7 +16,7 @@ print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 Irish_Nationality_DF = FifaAll_Players_DF[
     (FifaAll_Players_DF.nationality == 'Republic of Ireland')
    # & (FifaAll_Players_DF.league_name == 'English Premier League')
-    & (FifaAll_Players_DF.overall >= 80)
+    & (FifaAll_Players_DF.overall >= 78)
 ]
 print(Irish_Nationality_DF)
 

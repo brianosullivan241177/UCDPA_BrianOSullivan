@@ -56,3 +56,5 @@ print("********************** Duplicates in merged file  ***********************
 Duplicates_DF = fifas_merged.sort_values(by = 'short_name', ascending = True)
 print(Duplicates_DF)
 print("********************** Duplicates in merged file  ************************")
+
+

@@ -1,5 +1,5 @@
 # *********************** Brian O'Sullivan ***********************
-# ********************* Golden Boy Winners ***********************
+# ********************* Insights   ***********************
 # *** Insights for Players from the 2021 Season ***
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 

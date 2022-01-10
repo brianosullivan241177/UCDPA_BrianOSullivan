@@ -15,8 +15,8 @@ print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
 Irish_Nationality_DF = FifaAll_Players_DF[
     (FifaAll_Players_DF.nationality == 'Republic of Ireland')
-    & (FifaAll_Players_DF.league_name == 'English Premier League')
-    & ((FifaAll_Players_DF.dob == "1988-10-11") |(FifaAll_Players_DF.dob == "1988-10-11"))
+   # & (FifaAll_Players_DF.league_name == 'English Premier League')
+    & (FifaAll_Players_DF.overall >= 80)
 ]
 print(Irish_Nationality_DF)
 
@@ -33,6 +33,8 @@ plt.show()
 
 top_irish_df = Irish_Nationality_DF.head(5)
 
+Irish_Nationality_DF['dob_new'] = pd.to_datetime(Irish_Nationality_DF['dob'])
+print(Irish_Nationality_DF.dtypes)
 
 
 

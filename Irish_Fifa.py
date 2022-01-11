@@ -218,3 +218,4 @@ dataset.drop(dataset[dataset['short_name']==fullback2].index, inplace = True)
 print("The team is ",
       goalkeeper, fullback1, fullback2, centremidfielder1, centremidfielder2, centremidfielder3, attackingmidfielder1,
       attackingmidfielder2, centreback, stricker)
+

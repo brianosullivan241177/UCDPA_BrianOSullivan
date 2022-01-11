@@ -1,6 +1,6 @@
 # *********************** Brian O'Sullivan ***********************
-# ********************* Golden Boy Winners ***********************
-# *** Graphs comparing the Golden Boy winners ***
+# ********************* Irish Nationality ***********************
+# *** Graphs comparing the best Irish players ***
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
 import pandas as pd
@@ -22,11 +22,11 @@ print(Irish_Nationality_DF)
 
 
 plot_order = Irish_Nationality_DF.sort_values(by=['Season'], inplace=True)
-# Graph to show overall ratings by Golden Boy winner - R. Sterling continuing to improve
+#
 a = sns.catplot(data=Irish_Nationality_DF, x='Season',
                    y='overall', hue='long_name', height=6, aspect=2, order=plot_order, kind="point")
 
-# Graph to show wages by Golden Boy winner R. Sterling getting better wages
+#
 a = sns.catplot(data=Irish_Nationality_DF, x='Season',
                    y='wage_eur', hue='long_name', height=6, aspect=2, order=plot_order, kind="point")
 plt.show()
@@ -36,5 +36,26 @@ print(top_irish_df)
 
 
 
+Croatia_Nationality_DF = FifaAll_Players_DF[
+    (FifaAll_Players_DF.nationality == 'Croatia')
+   # & (FifaAll_Players_DF.league_name == 'English Premier League')
+    & (FifaAll_Players_DF.overall >= 78)
+]
+print(Croatia_Nationality_DF)
+#
+
+plot_order = Croatia_Nationality_DF.sort_values(by=['Season'], inplace=True)
+#
+a = sns.catplot(data=Croatia_Nationality_DF, x='Season',
+                   y='overall', hue='long_name', height=6, aspect=2, order=plot_order, kind="point")
 
 #
+a = sns.catplot(data=Croatia_Nationality_DF, x='Season',
+                   y='wage_eur', hue='long_name', height=6, aspect=2, order=plot_order, kind="point")
+plt.show()
+
+top_Croatia_df = Croatia_Nationality_DF.head(5)
+print(top_Croatia_df)
+
+import pandas as pd
+from mplsoccer.pitch import Pitch

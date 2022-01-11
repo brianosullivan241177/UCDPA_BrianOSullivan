@@ -99,3 +99,9 @@ sns.histplot(x="team_position",
             )
 plt.show()
 print("********** The top subs of top 250 - End ****************")
+print("********** The top players in the top 250 under 23 - Begin ****************")
+
+Fifa_Top_250_Top_100_DF = Fifa_Top_250_DF.head(100)
+fifa_2021_youth_DF = Fifa_Top_250_Top_100_DF[(Fifa_Top_250_Top_100_DF.age<23)]
+print(fifa_2021_youth_DF)
+print("********** The top players in the top 250 under 23 - End ****************")

@@ -18,8 +18,7 @@ Season_2014_2015_DF = FifaAll_Players_DF[
 
 
 Who_is_like_Salah_DF = Season_2014_2015_DF[
-    (Season_2014_2015_DF.nationality != 'Republic of Ireland')
-   & (Season_2014_2015_DF.team_position == 'SUB')
+    (Season_2014_2015_DF.team_position == 'SUB')
     & (Season_2014_2015_DF.potential == 84)
     & (Season_2014_2015_DF.overall == 76)
 ]

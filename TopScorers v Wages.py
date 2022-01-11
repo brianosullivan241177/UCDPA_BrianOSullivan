@@ -32,3 +32,12 @@ plot_order = merged_inner.sort_values(by=['Season'], inplace=True)
 a = sns.catplot(data=merged_inner, x='Season',
                    y='overall', hue='short_name', height=6, aspect=2, order=plot_order, kind="point")
 plt.show()
+
+plt.figure(figsize=(12,10))
+sns.histplot(x="short_name",
+             data=merged_inner,
+             hue="Goals Scored",
+             multiple="dodge",
+             palette="plasma"
+            )
+plt.show()

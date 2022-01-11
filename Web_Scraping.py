@@ -56,3 +56,15 @@ with open('/users/brian/documents/FIFA_Project/Modified/scraping.csv', 'w', newl
     writer.writerow(headers)
     for row in rows:
         writer.writerow(row.get_text())
+
+
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import pandas as pd
+
+driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
+products=[] #List to store name of the product
+prices=[] #List to store price of the product
+ratings=[] #List to store rating of the product
+driver.get("https://www.worldfootball.net/goalgetter/eng-premier-league-2014-2015/")
+

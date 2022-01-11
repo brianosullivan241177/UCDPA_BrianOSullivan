@@ -1,3 +1,7 @@
+# *********************** Brian O'Sullivan ***********************
+# ********************* Golden Boy Winners ***********************
+# ********************** Irish Fifa records **********************
+# * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 import pandas as pd
 import plotly.express as px
 import seaborn as sns
@@ -5,7 +9,7 @@ import matplotlib.pyplot as plt
 
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/Allplayers.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
-                                    'Season', 'height_cm','nationality','potential'], index_col=[0])
+                                    'Season', 'height_cm','nationality','potential','international_reputation'], index_col=[0])
 print(FifaAll_Players_DF.head()) #top records
 print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
@@ -15,12 +19,21 @@ Irish_Players_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality == 'Rep
                                       (FifaAll_Players_DF.league_name == 'English Premier League')]
 print(Irish_Players_PL_DF)
 print("******************* Irish players in the premier league - wages - End   ********************")
+
+plt.figure(dpi=125)
+sns.countplot('international_reputation',data=Irish_Players_PL_DF.head(100),palette='Blues')
+plt.xlabel('International Reputation')
+plt.ylabel('Number of Players')
+plt.title('International Reputation of the top 100 Irish Players')
+plt.show()
+
 Irish_PL_wages = Irish_Players_PL_DF.groupby('Season')['wage_eur'].agg(['mean', 'count'])
 Irish_PL_wages = Irish_PL_wages.sort_values(by = 'Season', ascending = True)
 
 fig = px.bar(Irish_PL_wages[0:10], x= Irish_PL_wages.index[0:10], y='mean') # will show up to 10 seasons
 fig.update_layout(title_text='Mean wages - Irish Players in the Premier League')
 fig.update_xaxes(title_text="<b> Season </b>")
+fig.update_yaxes(title_text="<b> Mean Wages </b>")
 fig.show()
 
 # Irish players outside the premier league - wages
@@ -34,6 +47,7 @@ Irish_Excl_PL_wages = Irish_Excl_PL_wages.sort_values(by = 'Season', ascending =
 fig1 = px.bar(Irish_Excl_PL_wages[0:10], x= Irish_Excl_PL_wages.index[0:10], y='mean') # will show up to 10 seasons
 fig1.update_layout(title_text='Mean wages - Irish Players outside the Premier League')
 fig1.update_xaxes(title_text="<b> Season </b>")
+fig1.update_yaxes(title_text="<b> Mean Wages </b>")
 fig1.show()
 
 
@@ -42,20 +56,25 @@ Coleman_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
                                 |(FifaAll_Players_DF.short_name == 'Cristiano Ronaldo')  ]
 print(Coleman_DF)
 
-Coleman_Season_Grouped = Coleman_DF.sort_values(['wage_eur'],ascending=False).groupby('Season').head(3)
-print(Coleman_Season_Grouped)
+#Coleman_Season_Grouped = Coleman_DF.sort_values(['wage_eur'],ascending=False).groupby('Season').head(3)
+#print(Coleman_Season_Grouped)
 
 
-Seamus_wages = Coleman_Season_Grouped.groupby('Season')['wage_eur'].agg(['mean', 'count'])
-Seamus_wages = Seamus_wages.sort_values(by = 'Season', ascending = True)
-fig2 = px.bar(Seamus_wages[0:10], x= Seamus_wages.index[0:10], y='mean') # will show up to 10 seasons
-fig2.update_layout(title_text='Mean wages - Seamus Coleman')
-fig2.update_xaxes(title_text="<b> Season </b>")
-fig2.show()
+#Seamus_wages = Coleman_Season_Grouped.groupby('Season')['wage_eur'].agg(['mean', 'count'])
+#Seamus_wages = Seamus_wages.sort_values(by = 'Season', ascending = True)
+#fig2 = px.bar(Seamus_wages[0:10], x= Seamus_wages.index[0:10], y='mean') # will show up to 10 seasons
+#fig2.update_layout(title_text='Mean wages - Seamus Coleman')
+#fig2.update_xaxes(title_text="<b> Season </b>")
+#fig2.update_yaxes(title_text="<b> Mean Wages </b>")
+#fig2.show()
 
+plot_order = Coleman_DF.sort_values(by=['Season'], inplace=True)
+Coleman_DF.rename(columns = {'overall':'Overall Rating in %', 'wage_eur':'Wages paid in Euro',
+                                     'short_name':'Player_name'}, inplace = True)
 
 a = sns.catplot(data=Coleman_DF, x='Season',
-                   y='overall', hue='short_name', height=6, aspect=2, kind="point")
+                   y='Overall Rating in %', hue='Player_name', height=6, aspect=2, kind="point", order=plot_order)
+a.fig.suptitle('Irish captains rating  compared to the best players in the world')
 plt.show()
 
 import pandas as pd
@@ -236,5 +255,5 @@ plt.text(50,60,centremidfielder3)
 plt.text(80,50,attackingmidfielder1)
 plt.text(80,30,attackingmidfielder2)
 plt.text(100,40,striker)
-plt.title("Best Irish Team according to stats")
+plt.title("Best Irish Team according to stats for the 2020-2021 season")
 plt.show()

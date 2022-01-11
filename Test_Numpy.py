@@ -2,8 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-Fifa_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/Allplayers.csv",
-                   usecols=['short_name', 'height_cm', 'overall','mentality_composure','age'],nrows=10)
+Fifa_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/Allplayers.csv", usecols=['short_name', 'height_cm', 'overall','mentality_composure','age'],nrows=10)
 
 print("***************** Numpy   ******************")
 import numpy as np

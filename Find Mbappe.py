@@ -6,6 +6,6 @@ Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/AllP
                       index_col="short_name")
 print(Fifa_Top_250_DF.head(50))
 
-Coleman_DF = Fifa_Top_250_DF[(Fifa_Top_250_DF.sofifa_id == 231747)]
+Coleman_DF = Fifa_Top_250_DF[(Fifa_Top_250_DF.short_name == "H. Kane")]
 
-print(Coleman_DF)
+#print(Coleman_DF)

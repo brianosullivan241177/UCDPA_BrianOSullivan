@@ -1,6 +1,6 @@
 # *********************** Brian O'Sullivan ***********************
-# ********************* Insights   ***********************
-# *** Insights for Players from the 2021 Season ***
+# ************************** Insights   **************************
+# ******* Insights for Players from the 2021 Season **************
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
 import pandas as pd
@@ -51,7 +51,7 @@ ax.set_title("FIFA 20 - Average Rating by Age", fontsize=20)
 print("***************** Merging Data Frames - End ************************")
 
 print("********** Function for player mentality - Begin ****************")
-def mental_calc(m):
+def Mentality_func(m):
     if m < 51:
         return "Unpredicatable - Roy Keane like"
     elif m >= 51 and m < 67:
@@ -61,7 +61,7 @@ def mental_calc(m):
 
 
 for index, row in Fifa_Top_250_DF.iterrows():
-    Fifa_Top_250_DF.loc[index, "mentality_composure"] = mental_calc(row["mentality_composure"])
+    Fifa_Top_250_DF.loc[index, "mentality_composure"] = Mentality_func(row["mentality_composure"])
 
 print("********** Function for player mentality - End ****************")
 

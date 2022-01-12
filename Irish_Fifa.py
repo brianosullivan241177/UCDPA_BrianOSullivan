@@ -7,18 +7,20 @@ import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/Allplayers.csv',
+FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
-                                    'Season', 'height_cm','nationality','potential','international_reputation'], index_col=[0])
+                                    'Season', 'height_cm','nationality_name','potential','international_reputation',])
 print(FifaAll_Players_DF.head()) #top records
 print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
 # Irish players in the premier league - wages
 print("******************* Irish players in the premier league - wages - Begin ********************")
-Irish_Players_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality == 'Republic of Ireland') &
+Irish_Players_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland') &
                                       (FifaAll_Players_DF.league_name == 'English Premier League')]
 print(Irish_Players_PL_DF)
 print("******************* Irish players in the premier league - wages - End   ********************")
+
+All_Irish_Players_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland')]
 
 plt.figure(dpi=125)
 sns.countplot('international_reputation',data=Irish_Players_PL_DF.head(100),palette='Blues')
@@ -37,7 +39,7 @@ fig.update_yaxes(title_text="<b> Mean Wages </b>")
 fig.show()
 
 # Irish players outside the premier league - wages
-Irish_Players_Excl_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality == 'Republic of Ireland') &
+Irish_Players_Excl_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland') &
                                       (FifaAll_Players_DF.league_name != 'English Premier League')]
 
 print(Irish_Players_Excl_PL_DF)
@@ -51,12 +53,15 @@ fig1.update_yaxes(title_text="<b> Mean Wages </b>")
 fig1.show()
 
 
-Coleman_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
-                                |(FifaAll_Players_DF.short_name == 'L. Messi')
-                                |(FifaAll_Players_DF.short_name == 'Cristiano Ronaldo')  ]
-print(Coleman_DF)
+Captains_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
+                                |(FifaAll_Players_DF.short_name == 'G. Bale')
+                                |(FifaAll_Players_DF.sofifa_id == 216267)
+                                |(FifaAll_Players_DF.sofifa_id == 202126) #more than one H. Kane
 
-#Coleman_Season_Grouped = Coleman_DF.sort_values(['wage_eur'],ascending=False).groupby('Season').head(3)
+]
+print(Captains_DF)
+
+#Coleman_Season_Grouped = Captains_DF.sort_values(['wage_eur'],ascending=False).groupby('Season').head(3)
 #print(Coleman_Season_Grouped)
 
 
@@ -68,23 +73,23 @@ print(Coleman_DF)
 #fig2.update_yaxes(title_text="<b> Mean Wages </b>")
 #fig2.show()
 
-plot_order = Coleman_DF.sort_values(by=['Season'], inplace=True)
-Coleman_DF.rename(columns = {'overall':'Overall Rating in %', 'wage_eur':'Wages paid in Euro',
+plot_order = Captains_DF.sort_values(by=['Season'], inplace=True)
+Captains_DF.rename(columns = {'overall':'Overall Rating in %', 'wage_eur':'Wages paid in Euro',
                                      'short_name':'Player_name'}, inplace = True)
 
-a = sns.catplot(data=Coleman_DF, x='Season',
+a = sns.catplot(data=Captains_DF, x='Season',
                    y='Overall Rating in %', hue='Player_name', height=6, aspect=2, kind="point", order=plot_order)
-a.fig.suptitle('Irish captains rating  compared to the best players in the world')
+a.fig.suptitle('Irish captains overall rating in % compared to neighbour countries')
 plt.show()
 
 import pandas as pd
-Players_20_21_DF= pd.read_csv('/users/brian/documents/FIFA_Project/Modified/players_20_21.csv')
+Players_21_22_DF= pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/players_21_22.csv')
 
 def findminmax(col):
-    top = Players_20_21_DF[col].idxmax()
-    top_df = pd.DataFrame(Players_20_21_DF.loc[0])
-    bottom = Players_20_21_DF[col].idxmin()
-    bottom_df = pd.DataFrame(Players_20_21_DF.loc[1])
+    top = Players_21_22_DF[col].idxmax()
+    top_df = pd.DataFrame(Players_21_22_DF.loc[0])
+    bottom = Players_21_22_DF[col].idxmin()
+    bottom_df = pd.DataFrame(Players_21_22_DF.loc[1])
     info_df = pd.concat([top_df, bottom_df], axis=1)
     return info_df
 
@@ -93,10 +98,10 @@ findminmax('wage_eur')
 
 def Country(x):
     def findminmax(col):
-        work = Players_20_21_DF[col].idxmax()
-        work_df = pd.DataFrame(Players_20_21_DF.loc[work])
+        work = Players_21_22_DF[col].idxmax()
+        work_df = pd.DataFrame(Players_21_22_DF.loc[work])
         return work_df
-    return Players_20_21_DF[Players_20_21_DF['nationality'] == x ][['goalkeeping_handling', 'short_name']].sort_values\
+    return Players_21_22_DF[Players_21_22_DF['nationality_name'] == x ][['goalkeeping_handling', 'short_name']].sort_values\
         (by=['goalkeeping_handling'],ascending=False)
 findminmax('goalkeeping_handling')
 Country1 = Country("Republic of Ireland")
@@ -106,18 +111,18 @@ print("The goalkeeper is :", goalkeeper)
 
 
 print("*********************************************")
-Players_20_21_DF['fullback_mean']=Players_20_21_DF['defending_sliding_tackle'] \
-                                  + Players_20_21_DF['passing'] + Players_20_21_DF['defending'] + \
-                                  Players_20_21_DF['skill_long_passing'] + Players_20_21_DF['power_strength']
-Players_20_21_DF
+Players_21_22_DF['fullback_mean']=Players_21_22_DF['defending_sliding_tackle'] \
+                                  + Players_21_22_DF['passing'] + Players_21_22_DF['defending'] + \
+                                  Players_21_22_DF['skill_long_passing'] + Players_21_22_DF['power_strength']
+Players_21_22_DF
 
 
 def Country(x):
     def findminmax(col):
-        work = Players_20_21_DF[col].idxmax()
-        work_df = pd.DataFrame(Players_20_21_DF.loc[work])
+        work = Players_21_22_DF[col].idxmax()
+        work_df = pd.DataFrame(Players_21_22_DF.loc[work])
         return work_df
-    return Players_20_21_DF[Players_20_21_DF['nationality'] == x ][['fullback_mean', 'short_name']]\
+    return Players_21_22_DF[Players_21_22_DF['nationality_name'] == x ][['fullback_mean', 'short_name']]\
         .sort_values(by=['fullback_mean'],ascending=False)
 
 Country1 = Country("Republic of Ireland")
@@ -133,20 +138,20 @@ print("*********************************************")
 
 
 
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==fullback1].index, inplace = True)
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==fullback2].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==fullback1].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==fullback2].index, inplace = True)
 
 
-Players_20_21_DF['centreback_mean']=Players_20_21_DF['movement_agility'] + Players_20_21_DF['pace']+ Players_20_21_DF['movement_reactions'] \
-                         + Players_20_21_DF['defending_sliding_tackle'] + Players_20_21_DF['defending']
-Players_20_21_DF
+Players_21_22_DF['centreback_mean']=Players_21_22_DF['movement_agility'] + Players_21_22_DF['pace']+ Players_21_22_DF['movement_reactions'] \
+                         + Players_21_22_DF['defending_sliding_tackle'] + Players_21_22_DF['defending']
+Players_21_22_DF
 
 def Country(x):
     def findminmax(col):
-        work = Players_20_21_DF[col].idxmax()
-        work_df = pd.DataFrame(Players_20_21_DF.loc[work])
+        work = Players_21_22_DF[col].idxmax()
+        work_df = pd.DataFrame(Players_21_22_DF.loc[work])
         return work_df
-    return Players_20_21_DF[Players_20_21_DF['nationality'] == x ][['centreback_mean', 'short_name']].sort_values(by=['centreback_mean'],ascending=False)
+    return Players_21_22_DF[Players_21_22_DF['nationality_name'] == x ][['centreback_mean', 'short_name']].sort_values(by=['centreback_mean'],ascending=False)
 findminmax('centreback_mean')
 Country1 = Country("Republic of Ireland")
 print(Country1)
@@ -156,10 +161,10 @@ print("The first wing back is :", centreback1)
 print("The second wing back is :", centreback2)
 
 
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']=='centreback_mean'].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']=='centreback_mean'].index, inplace = True)
 
-Players_20_21_DF['centremidfielder_mean']=Players_20_21_DF['dribbling'] + Players_20_21_DF['passing'] + Players_20_21_DF['pace'] + Players_20_21_DF['movement_agility']+ Players_20_21_DF['movement_reactions'] + Players_20_21_DF['movement_balance'] + Players_20_21_DF['attacking_short_passing']+ Players_20_21_DF['attacking_heading_accuracy']
-Players_20_21_DF
+Players_21_22_DF['centremidfielder_mean']=Players_21_22_DF['dribbling'] + Players_21_22_DF['passing'] + Players_21_22_DF['pace'] + Players_21_22_DF['movement_agility']+ Players_21_22_DF['movement_reactions'] + Players_21_22_DF['movement_balance'] + Players_21_22_DF['attacking_short_passing']+ Players_21_22_DF['attacking_heading_accuracy']
+Players_21_22_DF
 
 
 
@@ -167,10 +172,10 @@ Players_20_21_DF
 
 def Country(x):
     def findminmax(col):
-        work = Players_20_21_DF[col].idxmax()
-        work_df = pd.DataFrame(Players_20_21_DF.loc[work])
+        work = Players_21_22_DF[col].idxmax()
+        work_df = pd.DataFrame(Players_21_22_DF.loc[work])
         return work_df
-    return Players_20_21_DF[Players_20_21_DF['nationality'] == x ][['centremidfielder_mean', 'short_name']].sort_values(by=['centremidfielder_mean'],ascending=False)
+    return Players_21_22_DF[Players_21_22_DF['nationality_name'] == x ][['centremidfielder_mean', 'short_name']].sort_values(by=['centremidfielder_mean'],ascending=False)
 findminmax('centremidfielder_mean')
 Country1 = Country("Republic of Ireland")
 print(Country1)
@@ -183,19 +188,19 @@ print("The centremidfielder three is :", centremidfielder3)
 centremidfielder4=Country1.iloc[3][1]
 print("The centremidfielder four is :", centremidfielder4)
 
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==centremidfielder1].index, inplace = True)
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==centremidfielder2].index, inplace = True)
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==centremidfielder3].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==centremidfielder1].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==centremidfielder2].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==centremidfielder3].index, inplace = True)
 
-Players_20_21_DF['attackingmidfielder_mean']=Players_20_21_DF['attacking_finishing'] + Players_20_21_DF['passing'] + Players_20_21_DF['pace'] + Players_20_21_DF['attacking_heading_accuracy']+ Players_20_21_DF['attacking_short_passing'] + Players_20_21_DF['attacking_volleys'] + Players_20_21_DF['skill_curve']
-Players_20_21_DF
+Players_21_22_DF['attackingmidfielder_mean']=Players_21_22_DF['attacking_finishing'] + Players_21_22_DF['passing'] + Players_21_22_DF['pace'] + Players_21_22_DF['attacking_heading_accuracy']+ Players_21_22_DF['attacking_short_passing'] + Players_21_22_DF['attacking_volleys'] + Players_21_22_DF['skill_curve']
+Players_21_22_DF
 
 def Country(x):
     def findminmax(col):
-        work = Players_20_21_DF[col].idxmax()
-        work_df = pd.DataFrame(Players_20_21_DF.loc[work])
+        work = Players_21_22_DF[col].idxmax()
+        work_df = pd.DataFrame(Players_21_22_DF.loc[work])
         return work_df
-    return Players_20_21_DF[Players_20_21_DF['nationality'] == x ][['attackingmidfielder_mean', 'short_name']].sort_values(by=['attackingmidfielder_mean'],ascending=False)
+    return Players_21_22_DF[Players_21_22_DF['nationality_name'] == x ][['attackingmidfielder_mean', 'short_name']].sort_values(by=['attackingmidfielder_mean'],ascending=False)
 # findminmax('attackingmidfielder_mean')
 Country1 = Country("Republic of Ireland")
 print(Country1)
@@ -205,22 +210,22 @@ attackingmidfielder2=Country1.iloc[1][1]
 print("The attackingmidfielder two is :", attackingmidfielder2)
 
 
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==attackingmidfielder1].index, inplace = True)
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==attackingmidfielder2].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==attackingmidfielder1].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==attackingmidfielder2].index, inplace = True)
 
-Players_20_21_DF['striker_mean']=Players_20_21_DF['attacking_finishing'] + Players_20_21_DF['attacking_heading_accuracy'] + Players_20_21_DF['attacking_crossing'] + Players_20_21_DF['pace'] + Players_20_21_DF['skill_curve'] + Players_20_21_DF['skill_fk_accuracy'] + Players_20_21_DF['movement_balance']
-Players_20_21_DF
+Players_21_22_DF['striker_mean']=Players_21_22_DF['attacking_finishing'] + Players_21_22_DF['attacking_heading_accuracy'] + Players_21_22_DF['attacking_crossing'] + Players_21_22_DF['pace'] + Players_21_22_DF['skill_curve'] + Players_21_22_DF['skill_fk_accuracy'] + Players_21_22_DF['movement_balance']
+Players_21_22_DF
 
 def Country(x):
 
-    return Players_20_21_DF[Players_20_21_DF['nationality'] == x ][['striker_mean', 'short_name']].sort_values(by=['striker_mean'],ascending=False)
+    return Players_21_22_DF[Players_21_22_DF['nationality_name'] == x ][['striker_mean', 'short_name']].sort_values(by=['striker_mean'],ascending=False)
 
 Country1 = Country("Republic of Ireland")
 print(Country1)
 striker=Country1.iloc[0][1]
 print("The stricker is :", striker)
 
-Players_20_21_DF.drop(Players_20_21_DF[Players_20_21_DF['short_name']==striker].index, inplace = True)
+Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==striker].index, inplace = True)
 
 print("The team is ",
       goalkeeper, fullback1, fullback2,centreback1,centreback2,centremidfielder1, centremidfielder2, centremidfielder3, attackingmidfielder1,
@@ -257,3 +262,5 @@ plt.text(80,30,attackingmidfielder2)
 plt.text(100,40,striker)
 plt.title("Best Irish Team according to stats for the 2020-2021 season")
 plt.show()
+
+

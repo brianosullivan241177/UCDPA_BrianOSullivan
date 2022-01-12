@@ -1,15 +1,15 @@
 # *********************** Brian O'Sullivan ***********************
 # ************************** Insights   **************************
-# ******* Insights for Players from the 2021 Season **************
+# ******* Insights for Players from the 2021-2022 Season *********
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/players_20_21.csv",
+Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv",
                    usecols=['short_name', 'height_cm', 'overall', 'club_name','potential','age','work_rate','Season','value_eur',
-                            'preferred_foot','team_position','skill_ball_control','skill_dribbling','mentality_composure','wage_eur'],
+                            'preferred_foot','club_position','skill_ball_control','skill_dribbling','mentality_composure','wage_eur'],
                       index_col="short_name",nrows=250)
 
 print("************************* Top 20 players ****************************")
@@ -31,7 +31,7 @@ print("***************** Unique Clubs in the top 250 - Begin *******************
 Unique_Clubs_DF = Fifa_Top_250_DF.club_name.unique()[:10] #top 10 unique clubs
 print(Unique_Clubs_DF)
 print("***************** Unique Clubs in the top 250 - End ************************")
-fifa_20_top_attackers = Fifa_Top_250_DF[Fifa_Top_250_DF['team_position'].str.contains('ST|RW|LW|CF|LS|RS')==True]\
+fifa_20_top_attackers = Fifa_Top_250_DF[Fifa_Top_250_DF['club_position'].str.contains('ST|RW|LW|CF|LS|RS')==True]\
     .sort_values(by="overall", ascending=False)
 
 #print(fifa_20_top_attackers.head(20))
@@ -75,7 +75,7 @@ print("**********Columns of top 250 - End ****************")
 print("********** Graph for top 250 Mentality - Begin ****************")
 
 plt.figure(figsize=(12,10))
-sns.histplot(x="team_position",
+sns.histplot(x="club_position",
              data=Fifa_Top_250_DF,
              hue="mentality_composure",
              multiple="dodge",
@@ -86,12 +86,12 @@ print("********** Graph for top 250 Mentality - End ****************")
 
 print("********** The top subs of top 250 - Begin ****************")
 
-Fifa_20_top_Subs = Fifa_Top_250_DF[Fifa_Top_250_DF['team_position'].str.contains('SUB')==True]\
+Fifa_20_top_Subs = Fifa_Top_250_DF[Fifa_Top_250_DF['club_position'].str.contains('SUB')==True]\
     .sort_values(by="overall", ascending=False)
 print(Fifa_20_top_Subs.head(20))
 
 plt.figure(figsize=(12,10))
-sns.histplot(x="team_position",
+sns.histplot(x="club_position",
              data=Fifa_20_top_Subs,
              hue="mentality_composure",
              multiple="dodge",

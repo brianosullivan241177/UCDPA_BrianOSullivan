@@ -4,9 +4,9 @@ import csv
 from csv import reader
 import seaborn as sns
 import matplotlib.pyplot as plt
-FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/players_20_21.csv',
+FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/players_21_22.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
-                                    'Season', 'height_cm','nationality','potential','goalkeeping_reflexes'], index_col=[0])
+                                    'Season', 'height_cm','nationality_name','potential','goalkeeping_reflexes'], index_col=[0])
 print("*************************** Duplicates ******************************")
 duplicates = FifaAll_Players_DF[FifaAll_Players_DF.duplicated()]
 print(duplicates)
@@ -34,7 +34,7 @@ print(FifaAll_Players_Drop_DF.columns)
 
 print("************************ Deleting rows based on certain columns *********************")
 print("************************ Before delete *********************")
-FifaAll_Players_DF= pd.read_csv("/users/brian/documents/FIFA_Project/Modified/players_20_21.csv")
+FifaAll_Players_DF= pd.read_csv("/users/brian/documents/FIFA_Project_Final/Modified/players_21_22.csv")
 print(FifaAll_Players_DF.shape)
 
 Fifa_Del_Test_DF = FifaAll_Players_DF.drop_duplicates(
@@ -48,19 +48,19 @@ print(Fifa_Del_Test_DF.shape)
 print("************************ After delete - End *********************")
 print("************************ Duplicate Players - Begin *********************")
 Found_Duplicates_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'R. Funes Mori')
-                                 |(FifaAll_Players_DF.short_name == 'Wang Peng')]
-print(Found_Duplicates_DF[['sofifa_id','short_name','age','nationality','dob','long_name']])
+                                 |(FifaAll_Players_DF.short_name == 'Mateus')]
+print(Found_Duplicates_DF[['sofifa_id','short_name','age','nationality_name','dob','long_name']])
 
 print("************************ Duplicate Players - End *********************")
 
 print("************************ Slice - Begin *********************")
-filename = "/Users/brian/Documents/FIFA_Project/Modified/players_20_21.csv"
+filename = "/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv"
 
 with open(filename, 'r') as data:
     for line in csv.reader(data):
-        print(line[2:3])
+        print(line[0:3])
 print("************************ Slice - End *********************")
 print("************************ Slice Dataframe - Begin *********************")
-Slice_DF = Found_Duplicates_DF[2:6]# Only wanted Wang Peng records
+Slice_DF = duplicateRows_name_age_DF[2:4]# Only wanted these records from
 print(Slice_DF)
 print("************************ Slice Dataframe - End *********************")

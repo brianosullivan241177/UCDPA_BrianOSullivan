@@ -28,54 +28,61 @@ def add_column_in_csv(input_file, output_file, transform_row):
 header_of_new_col = 'Season'
 default_text = '2014-2015'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_15.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_14_15.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_15.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_14_15.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 
 header_of_new_col = 'Season'
 default_text = '2015-2016'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_16.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_15_16.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_16.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_15_16.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 
 header_of_new_col = 'Season'
 default_text = '2016-2017'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_17.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_16_17.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_17.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_16_17.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 
 header_of_new_col = 'Season'
 default_text = '2017-2018'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_18.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_17_18.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_18.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_17_18.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 
 header_of_new_col = 'Season'
 default_text = '2018-2019'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_19.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_18_19.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_19.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_18_19.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 
 header_of_new_col = 'Season'
 default_text = '2019-2020'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_20.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_19_20.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_20.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_19_20.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 
 header_of_new_col = 'Season'
 default_text = '2020-2021'
 # Add the column season to csv file with season information
-add_column_in_csv('/Users/brian/Documents/FIFA_Project/players_21.csv', '/Users/brian/Documents/FIFA_Project/Modified/players_20_21.csv',
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_21.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_20_21.csv',
+                  lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
+                      default_text))
+
+header_of_new_col = 'Season'
+default_text = '2021-2022'
+# Add the column season to csv file with season information
+add_column_in_csv('/Users/brian/Documents/FIFA_Project_Final/players_22.csv', '/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv',
                   lambda row, line_num: row.append(header_of_new_col) if line_num == 1 else row.append(
                       default_text))
 #merge all the files that you are going to work on
-path = "/users/brian/documents/FIFA_Project/Modified/"
+path = "/users/brian/documents/FIFA_Project_Final/Modified/"
 all_files = glob.glob(os.path.join(path, "p*.csv"))
 df_from_each_file = (pd.read_csv(f, sep=',') for f in all_files)
 df_merged = pd.concat(df_from_each_file, ignore_index=True, sort=False)
-df_merged.to_csv("/users/brian/documents/FIFA_Project/Modified/FIFAAllplayers.csv") #This part to create file you will use for majority of the project
+df_merged.to_csv("/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv") #This part to create file you will use for majority of the project

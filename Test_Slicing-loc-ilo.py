@@ -1,6 +1,6 @@
 import pandas as pd
 
-Fifa_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/Allplayers.csv",
+Fifa_DF = pd.read_csv("/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv",
                    usecols=['short_name', 'height_cm', 'overall', 'potential','age','work_rate','Season'], index_col="short_name")
 
 print("************************* Top 20 players ****************************")
@@ -15,7 +15,7 @@ print("************************* List Index ****************************")
 print(list(rows.index))
 print("************************* First 500 records iloc ****************************")
 
-Fifa_Col_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project/Modified/Allplayers.csv",
+Fifa_Col_DF = pd.read_csv("/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv",
                    usecols=['sofifa_id', 'short_name', 'height_cm', 'overall', 'potential','age','Season','dob'], index_col=[0],nrows=500)
 
 print(Fifa_Col_DF)

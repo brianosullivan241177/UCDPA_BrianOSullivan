@@ -7,14 +7,14 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project/Modified/Allplayers.csv',
+FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','long_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
-                                    'Season', 'height_cm','nationality','potential','dob','international_reputation'], index_col=[0])
+                                    'Season', 'height_cm','nationality_name','potential','dob','international_reputation'], index_col=[0])
 print(FifaAll_Players_DF.head()) #top records
 print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
 Irish_Nationality_DF = FifaAll_Players_DF[
-    (FifaAll_Players_DF.nationality == 'Republic of Ireland')
+    (FifaAll_Players_DF.nationality_name == 'Republic of Ireland')
    # & (FifaAll_Players_DF.league_name == 'English Premier League')
     & (FifaAll_Players_DF.overall >= 78)
 ]
@@ -37,7 +37,7 @@ print(top_irish_df)
 
 
 Croatia_Nationality_DF = FifaAll_Players_DF[
-    (FifaAll_Players_DF.nationality == 'Croatia')
+    (FifaAll_Players_DF.nationality_name == 'Croatia')
    # & (FifaAll_Players_DF.league_name == 'English Premier League')
     & (FifaAll_Players_DF.overall >= 78)
 ]

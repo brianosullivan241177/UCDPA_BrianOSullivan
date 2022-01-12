@@ -32,7 +32,11 @@ Could_be_like_Salah_DF = FifaAll_Players_DF=FifaAll_Players_DF[
 ]
 
 plot_order = Could_be_like_Salah_DF.sort_values(by=['Season'], inplace=True)
-
+Could_be_like_Salah_DF.rename(columns = {'overall':'Overall Rating in %', 'wage_eur':'Wages paid in Euro',
+                                     'long_name':'Player Name'}, inplace = True)
 a = sns.catplot(data=Could_be_like_Salah_DF, x='Season',
-                   y='overall', hue='long_name', height=6, aspect=2, order=plot_order, kind="point")
+                   y='Overall Rating in %', hue='Player Name', height=5, aspect=2, order=plot_order, kind="point")
+plt.title("Players like Salah in 2014 and how they compared over the seasons")
+plt.xlabel("Season")
+plt.ylabel("Overall Rating in %")
 plt.show()

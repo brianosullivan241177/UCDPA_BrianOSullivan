@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv",
-                   usecols=['short_name', 'height_cm', 'overall', 'club_name','potential','age','work_rate','Season','value_eur',
+                   usecols=['short_name', 'height_cm', 'overall','league_name', 'club_name','potential','age','work_rate','Season','value_eur',
                             'preferred_foot','club_position','skill_ball_control','skill_dribbling','mentality_composure','wage_eur'],
                       index_col="short_name",nrows=250)
 
@@ -108,6 +108,18 @@ print("********** The top subs of top 250 - End ****************")
 print("********** The top players in the top 250 under 23 - Begin ****************")
 
 Fifa_Top_250_Top_100_DF = Fifa_Top_250_DF.head(100)
-fifa_2021_youth_DF = Fifa_Top_250_Top_100_DF[(Fifa_Top_250_Top_100_DF.age<23)]
-print(fifa_2021_youth_DF)
+fifa_2022_youth_DF = Fifa_Top_250_Top_100_DF[(Fifa_Top_250_Top_100_DF.age<23)]
+print(fifa_2022_youth_DF)
+
+plt.figure(figsize=(12,10))
+sns.histplot(x="league_name",
+             data=fifa_2022_youth_DF,
+             hue="league_name",
+             multiple="dodge",
+             palette="plasma"
+            )
+plt.xlabel('League')
+plt.ylabel('Number of Players')
+plt.title('Leagues of players under 23 in the top 100')
+plt.show()
 print("********** The top players in the top 250 under 23 - End ****************")

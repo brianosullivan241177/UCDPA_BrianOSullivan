@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 Fifa_DF = pd.read_csv("/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv",
                       usecols=['short_name', 'height_cm', 'overall','mentality_composure','age'],nrows=10)
@@ -12,6 +10,7 @@ with open("/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.cs
     allplayers = list(csv.reader(f, delimiter=";"))
 print("***************** Numpy array Top 5 - Begin ******************")
 allplayers1 = np.array(allplayers[0:6])
+
 print(allplayers1)
 print("***************** Numpy array Top 5 - End ********************")
 print("***************** Third player in list - Begin  ******************")
@@ -56,5 +55,4 @@ print("********************** Duplicates in merged file  ***********************
 Duplicates_DF = fifas_merged.sort_values(by = 'short_name', ascending = True)
 print(Duplicates_DF)
 print("********************** Duplicates in merged file  ************************")
-
 

@@ -2,7 +2,7 @@ import csv
 import numpy as np
 import pandas as pd
 print("*********************************** List [] - Begin ****************************************")
-filename = "/Users/brian/Documents/FIFA_Project/Modified/players_20_21.csv"
+filename = "/Users/brian/Documents/FIFA_Project_final/Modified/players_21_22.csv"
 
 with open(filename, 'r') as data:
     for line_list in csv.reader(data):
@@ -11,7 +11,7 @@ print("*********************************** List [] - End ***********************
 
 print("*********************************** Dictionary {}- Begin ****************************************")
 
-filename_dict = "/Users/brian/Documents/FIFA_Project/Modified/players_20_21.csv"
+filename_dict = "/Users/brian/Documents/Fifa_Project_Final/Modified/players_21_22.csv"
 with open(filename_dict, 'r') as data:
     for line_dict in csv.DictReader(data):
         print(line_dict)
@@ -25,9 +25,6 @@ print("*********************************** List - certain fields - End *********
 print("*************** Testing ***************")
 
 def all_values(dict_obj):
-    ''' This function generates all values of
-        a nested dictionary.
-    '''
     # Iterate over all values of the dictionary
     for key , value in line_dict.items():
         # If value is of dictionary type then yield all values

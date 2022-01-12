@@ -9,7 +9,7 @@ FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modi
                                     'Season', 'height_cm','nationality_name','potential','goalkeeping_reflexes'], index_col=[0])
 print("*************************** Duplicates ******************************")
 duplicates = FifaAll_Players_DF[FifaAll_Players_DF.duplicated()]
-print(duplicates)
+print("Duplicate Rows based on all the columns are:", duplicates, sep='\n')
 
 duplicateRowsDF = FifaAll_Players_DF[FifaAll_Players_DF.duplicated(['short_name'])]
 print("Duplicate Rows based on the short name column are:", duplicateRowsDF, sep='\n')
@@ -23,7 +23,8 @@ Duplicates_DF = duplicateRows_name_age_DF.sort_values(by = 'short_name', ascendi
 
 fig = px.bar(Duplicates_DF[0:10], x= Duplicates_DF.index[0:10], y='short_name') # will show up to 10 seasons
 fig.update_layout(title_text='Duplicate players based on short name, age and height')
-fig.update_xaxes(title_text="<b> Season </b>")
+fig.update_yaxes(title_text="<b> Players </b>")
+fig.update_xaxes(title_text="<b> Wages in Euro </b>")
 fig.show()
 
 FifaAll_Players_Drop_DF = FifaAll_Players_DF.drop(['goalkeeping_reflexes'], axis = 1)
@@ -53,13 +54,6 @@ print(Found_Duplicates_DF[['sofifa_id','short_name','age','nationality_name','do
 
 print("************************ Duplicate Players - End *********************")
 
-print("************************ Slice - Begin *********************")
-filename = "/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv"
-
-with open(filename, 'r') as data:
-    for line in csv.reader(data):
-        print(line[0:3])
-print("************************ Slice - End *********************")
 print("************************ Slice Dataframe - Begin *********************")
 Slice_DF = duplicateRows_name_age_DF[2:4]# Only wanted these records from
 print(Slice_DF)

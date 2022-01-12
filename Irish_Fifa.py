@@ -52,7 +52,6 @@ fig1.update_xaxes(title_text="<b> Season </b>")
 fig1.update_yaxes(title_text="<b> Mean Wages </b>")
 fig1.show()
 
-
 Captains_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
                                 |(FifaAll_Players_DF.short_name == 'G. Bale')
                                 |(FifaAll_Players_DF.sofifa_id == 216267)
@@ -263,6 +262,8 @@ plt.text(80,30,attackingmidfielder2)
 plt.text(100,40,striker)
 plt.title("Best Irish Team according to stats for the 2021-2022 season")
 plt.show()
+
+
 
 
 

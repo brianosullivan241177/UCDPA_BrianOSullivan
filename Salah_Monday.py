@@ -2,14 +2,16 @@
 # ********************* Golden Boy Winners ***********************
 # *** Graphs comparing the Golden Boy winners ***
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
-
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from bokeh.plotting import figure
+from bokeh.io import show
 
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','long_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
-                                    'Season', 'height_cm','nationality_name','potential','dob','club_position'], index_col=[0])
+                                    'Season', 'height_cm','weight_kg','nationality_name','potential','dob','club_position'], index_col=[0])
 print(FifaAll_Players_DF.head()) #top records
 print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
@@ -40,3 +42,5 @@ plt.title("Players like Salah in 2014 and how they compared over the seasons")
 plt.xlabel("Season")
 plt.ylabel("Overall Rating in %")
 plt.show()
+
+

@@ -9,7 +9,7 @@ import seaborn as sns
 
 Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv",
                    usecols=['short_name', 'height_cm', 'overall','league_name', 'club_name','potential','age','work_rate','Season','value_eur',
-                            'preferred_foot','club_position','skill_ball_control','skill_dribbling','mentality_composure','wage_eur'],
+                            'preferred_foot','club_position','skill_ball_control','player_positions','goalkeeping_speed','skill_dribbling','mentality_composure','wage_eur'],
                       index_col="short_name",nrows=250)
 
 print("************************* Top 20 players ****************************")
@@ -123,3 +123,16 @@ plt.ylabel('Number of Players')
 plt.title('Leagues of players under 23 in the top 100')
 plt.show()
 print("********** The top players in the top 250 under 23 - End ****************")
+
+print("*************************** Attackers ******************************")
+Fifa_20_top_Attack_DF = Fifa_Top_250_DF[Fifa_Top_250_DF['player_positions'].str.contains('ST|LW|RW|LW|CF|CAM|RM|LM')==True].\
+    sort_values(by="overall", ascending=False)
+print(Fifa_20_top_Attack_DF.head(10))
+
+#Replacing missing values
+print("*************************** Replace missing values - Begin ******************************")
+Replaced_Fifa_20_top_Attack_DF =  Fifa_20_top_Attack_DF['goalkeeping_speed'].fillna(0,inplace=True)
+print("*************************** Replace missing values - End ********************************")
+
+print("************************** Players after filling in gk_positioning ******************************")
+print(Fifa_20_top_Attack_DF.head(10))

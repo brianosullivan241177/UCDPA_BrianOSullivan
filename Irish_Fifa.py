@@ -56,6 +56,7 @@ fig1.show()
 Captains_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
                                 |(FifaAll_Players_DF.short_name == 'G. Bale')
                                 |(FifaAll_Players_DF.sofifa_id == 216267)
+                                 | (FifaAll_Players_DF.sofifa_id == 151508)
                                 |(FifaAll_Players_DF.sofifa_id == 202126) #more than one H. Kane
 
 ]
@@ -79,7 +80,7 @@ Captains_DF.rename(columns = {'overall':'Overall Rating in %', 'wage_eur':'Wages
 
 a = sns.catplot(data=Captains_DF, x='Season',
                    y='Overall Rating in %', hue='Player_name', height=6, aspect=2, kind="point", order=plot_order)
-a.fig.suptitle('Irish captains overall rating in % compared to neighbour countries')
+a.fig.suptitle('Irish captains overall rating in % compared to our neighbours')
 plt.show()
 
 import pandas as pd
@@ -248,7 +249,7 @@ from mplsoccer import Pitch
 import matplotlib.pyplot as plt
 pitch = Pitch(pitch_color='grass', line_color='white', stripe=True)
 fig, ax = pitch.draw()
-a.fig.suptitle('Golden Boy Winners Overall ratings in % per Season')
+#a.fig.suptitle('Golden Boy Winners Overall ratings in % per Season')
 plt.text(1,40,goalkeeper)
 plt.text(15,4, fullback1)
 plt.text(15,79,fullback2)
@@ -260,7 +261,8 @@ plt.text(50,60,centremidfielder3)
 plt.text(80,50,attackingmidfielder1)
 plt.text(80,30,attackingmidfielder2)
 plt.text(100,40,striker)
-plt.title("Best Irish Team according to stats for the 2020-2021 season")
+plt.title("Best Irish Team according to stats for the 2021-2022 season")
 plt.show()
+
 
 

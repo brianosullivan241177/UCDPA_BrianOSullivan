@@ -19,9 +19,9 @@ print(Fifa_Top_250_DF.preferred_foot.value_counts())
 
 plt.figure(dpi=125)
 sns.countplot('preferred_foot', data=Fifa_Top_250_DF, palette='Blues')
-plt.xlabel('Preferred Foot Players')
-plt.ylabel('Count')
-plt.title('Count of Preferred Foot')
+plt.xlabel('Players Preferred Foot ')
+plt.ylabel('Number of Players')
+plt.title('Players Preferred Foot of Players in top 250')
 Right, Left = Fifa_Top_250_DF.preferred_foot.value_counts()
 print('Left Preferred', Left)
 print('Right Preferred', Right)
@@ -44,8 +44,8 @@ fifa_20_summary = pd.concat([fifa_20_potential, fifa_20_overall], axis=1)
 fig, ax = plt.subplots(figsize=(16, 8))
 ax.plot(fifa_20_summary)
 ax.set_xlabel("Age", fontsize=20)
-ax.set_ylabel("Rating", fontsize=20)
-ax.set_title("FIFA 20 - Average Rating by Age", fontsize=20)
+ax.set_ylabel("Rating in %", fontsize=20)
+ax.set_title("Player Average Rating by Age for top 250", fontsize=20)
 #plt.show()
 
 print("***************** Merging Data Frames - End ************************")
@@ -53,11 +53,11 @@ print("***************** Merging Data Frames - End ************************")
 print("********** Function for player mentality - Begin ****************")
 def Mentality_func(m):
     if m < 51:
-        return "Unpredicatable - Roy Keane like"
+        return "Unpredicatable"
     elif m >= 51 and m < 67:
-        return "Dependable - Denis Irwin like"
+        return "Dependable"
     elif m >= 67:
-        return "Cool - Ronaldo like"
+        return "Cool"
 
 
 for index, row in Fifa_Top_250_DF.iterrows():
@@ -81,6 +81,9 @@ sns.histplot(x="club_position",
              multiple="dodge",
              palette="plasma"
             )
+plt.xlabel('Players Positions')
+plt.ylabel('Number of Players')
+plt.title('Mentality of the Top 250 players by Position')
 #plt.show()
 print("********** Graph for top 250 Mentality - End ****************")
 
@@ -97,6 +100,9 @@ sns.histplot(x="club_position",
              multiple="dodge",
              palette="plasma"
             )
+plt.xlabel('Players Position')
+plt.ylabel('Number of Players')
+plt.title('Mentality of the Top 250 players who are subs')
 plt.show()
 print("********** The top subs of top 250 - End ****************")
 print("********** The top players in the top 250 under 23 - Begin ****************")

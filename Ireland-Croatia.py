@@ -6,6 +6,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','long_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
@@ -61,3 +62,23 @@ plt.show()
 
 top_Croatia_df = Croatia_Nationality_DF.head(5)
 print(top_Croatia_df)
+
+plt.figure(dpi=125)
+sns.distplot(a=Irish_Nationality_DF['Overall Rating in %'],kde=False,bins=20)
+plt.axvline(x=np.mean(Irish_Nationality_DF['Overall Rating in %']),c='green',label='Mean Overall Rating of All Players')
+plt.legend()
+plt.xlabel('Overall Rating in %')
+plt.ylabel('Number of Players')
+plt.title('Ireland - Distribution of Overall Player Rating in %')
+plt.show()
+
+
+
+plt.figure(dpi=125)
+sns.distplot(a=Croatia_Nationality_DF['Overall Rating in %'],kde=False,bins=20)
+plt.axvline(x=np.mean(Croatia_Nationality_DF['Overall Rating in %']),c='green',label='Mean Overall Rating of All Players')
+plt.legend()
+plt.xlabel('Overall Rating in %')
+plt.ylabel('Number of Players')
+plt.title('Croatia - Distribution of Overall Player Rating in %')
+plt.show()

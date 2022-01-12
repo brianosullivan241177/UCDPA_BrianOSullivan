@@ -9,7 +9,7 @@ import seaborn as sns
 
 Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv",
                    usecols=['short_name', 'height_cm', 'overall','league_name', 'club_name','potential','age','work_rate','Season','value_eur',
-                            'preferred_foot','club_position','skill_ball_control','player_positions','goalkeeping_speed','skill_dribbling','mentality_composure','wage_eur'],
+                            'preferred_foot','club_position','skill_ball_control','player_positions','goalkeeping_reflexes','goalkeeping_speed','skill_dribbling','mentality_composure','wage_eur'],
                       index_col="short_name",nrows=250)
 
 print("************************* Top 20 players ****************************")
@@ -136,3 +136,10 @@ print("*************************** Replace missing values - End ****************
 
 print("************************** Players after filling in gk_positioning ******************************")
 print(Fifa_20_top_Attack_DF.head(10))
+
+
+FifaTop250_Drop_Players_Drop_DF = Fifa_Top_250_DF.drop(['goalkeeping_reflexes'], axis = 1)
+print("*************************** Before dropping Goalkeeping reflexes column ****************************")
+print(Fifa_Top_250_DF.columns)
+print("*************************** After dropping Goalkeeping reflexes column ****************************")
+print(FifaTop250_Drop_Players_Drop_DF.columns)

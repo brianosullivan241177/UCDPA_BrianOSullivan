@@ -13,6 +13,25 @@ FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modi
 print(FifaAll_Players_DF.head()) #top records
 print(FifaAll_Players_DF.dtypes) #dataframe data tyoes
 
+
+Fifa_DF = pd.read_csv("/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv",
+                   usecols=['short_name','sofifa_id', 'overall','age','club_position','dob'], index_col="short_name")
+
+print("************************* Find Kane and Robertson using loc - Begin ****************************")
+Find_HKane= Fifa_DF.loc[["H. Kane"]]
+print(type(Find_HKane))
+print(Find_HKane.head(2))
+
+Find_ARobertson= Fifa_DF.loc[["A. Robertson"]]
+print(type(Find_ARobertson))
+print(Find_ARobertson.head(2))
+
+print("************************* Find Kane and Robertson using loc - End ****************************")
+
+
+
+
+
 # Irish players in the premier league - wages
 print("******************* Irish players in the premier league - wages - Begin ********************")
 Irish_Players_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland') &

@@ -25,7 +25,6 @@ print(Fifa_Top_250_DF.preferred_foot.value_counts())
 
 plt.figure(dpi=125)
 sns.countplot('preferred_foot', data=Fifa_Top_250_DF, palette='Blues')
-#plt.legend(['Avg. Potential', 'Avg. Overall'], loc='upper right')
 plt.xlabel('The players preferred Foot ')
 plt.ylabel('Number of players')
 plt.title('The preferred foot of the top 250 players in the world')

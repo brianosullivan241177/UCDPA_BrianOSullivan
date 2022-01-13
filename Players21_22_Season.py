@@ -1,6 +1,6 @@
 # *********************** Brian O'Sullivan ***********************
-# ************************** Insights   **************************
-# ******* Insights for Players from the 2021-2022 Season *********
+# ******************* Players 21 - 22 Season   *******************
+# **************** Players from the 2021-2022 Season *************
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
 import pandas as pd

@@ -1,3 +1,7 @@
+# *********************** Brian O'Sullivan ***********************
+# ***************** File to look for Duplicates ******************
+# * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
+
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt

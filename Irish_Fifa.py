@@ -1,5 +1,5 @@
 # *********************** Brian O'Sullivan ***********************
-# ********************* Golden Boy Winners ***********************
+# ********************* Ireland comparisons **********************
 # ********************** Irish Fifa records **********************
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 import pandas as pd
@@ -35,10 +35,6 @@ print(Find_ARobertson.head(2))
 
 print("************************* Find Kane and Robertson using loc - End ****************************")
 
-
-
-
-
 # Irish players in the premier league - wages
 print("******************* Irish players in the premier league - wages - Begin ********************")
 Irish_Players_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland') &
@@ -70,8 +66,6 @@ fig.update_xaxes(title_text="<b> Season </b>")
 fig.update_yaxes(title_text="<b> Mean Wages </b>")
 fig.show()
 
-
-
 # Irish players outside the premier league - wages
 Irish_Players_Excl_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland') &
                                       (FifaAll_Players_DF.league_name != 'English Premier League')]
@@ -100,18 +94,6 @@ Captains_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'S. Coleman')
 
 ]
 print(Captains_DF)
-
-#Coleman_Season_Grouped = Captains_DF.sort_values(['wage_eur'],ascending=False).groupby('Season').head(3)
-#print(Coleman_Season_Grouped)
-
-
-#Seamus_wages = Coleman_Season_Grouped.groupby('Season')['wage_eur'].agg(['mean', 'count'])
-#Seamus_wages = Seamus_wages.sort_values(by = 'Season', ascending = True)
-#fig2 = px.bar(Seamus_wages[0:10], x= Seamus_wages.index[0:10], y='mean') # will show up to 10 seasons
-#fig2.update_layout(title_text='Mean wages - Seamus Coleman')
-#fig2.update_xaxes(title_text="<b> Season </b>")
-#fig2.update_yaxes(title_text="<b> Mean Wages </b>")
-#fig2.show()
 
 plot_order = Captains_DF.sort_values(by=['Season'], inplace=True)
 Captains_DF.rename(columns = {'overall':'Overall Rating in %', 'wage_eur':'Wages paid in Euro',

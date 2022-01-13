@@ -1,6 +1,5 @@
 # *********************** Brian O'Sullivan ***********************
-# ********************* Golden Boy Winners ***********************
-# *** Graphs comparing the Golden Boy winners ***
+# ********************* Mo Salah Comparison **********************
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 import numpy as np
 import pandas as pd

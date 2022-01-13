@@ -1,6 +1,6 @@
 # *********************** Brian O'Sullivan ***********************
 # ********************* Golden Boy Winners ***********************
-# *** Graphs comparing the Golden Boy winners ********************
+# *********** Graphs comparing the Golden Boy winners ************
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
 import pandas as pd

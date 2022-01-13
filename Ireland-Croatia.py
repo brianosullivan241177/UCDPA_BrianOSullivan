@@ -1,6 +1,5 @@
 # *********************** Brian O'Sullivan ***********************
-# ********************* Irish Nationality ***********************
-# *** Graphs comparing the best Irish players ***
+# ***************** Ireland compared to Croatia ******************
 # * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
 
 import pandas as pd

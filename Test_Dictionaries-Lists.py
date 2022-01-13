@@ -1,6 +1,11 @@
+# *********************** Brian O'Sullivan ***********************
+# **************** Dictionary and List creation ******************
+# * https://github.com/brianosullivan241177/UCDPA_BrianOSullivan *
+
+
 import csv
 import numpy as np
-import pandas as pd
+
 print("*********************************** List [] - Begin ****************************************")
 filename = "/Users/brian/Documents/FIFA_Project_final/Modified/players_21_22.csv"
 

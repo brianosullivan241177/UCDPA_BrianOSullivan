@@ -70,6 +70,8 @@ fig.update_xaxes(title_text="<b> Season </b>")
 fig.update_yaxes(title_text="<b> Mean Wages </b>")
 fig.show()
 
+
+
 # Irish players outside the premier league - wages
 Irish_Players_Excl_PL_DF = FifaAll_Players_DF[(FifaAll_Players_DF.nationality_name == 'Republic of Ireland') &
                                       (FifaAll_Players_DF.league_name != 'English Premier League')]

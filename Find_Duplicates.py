@@ -68,6 +68,7 @@ Found_Duplicates_DF = FifaAll_Players_DF[(FifaAll_Players_DF.short_name == 'R. F
                                  |(FifaAll_Players_DF.short_name == 'Mateus')]
 print(Found_Duplicates_DF[['sofifa_id','short_name','age','nationality_name','dob','long_name']])
 
+
 print("************************ Duplicate Players - End *********************")
 
 print("************************ Slice Dataframe - Begin *********************")

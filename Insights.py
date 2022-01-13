@@ -7,6 +7,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.titlesize'] = 15
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+
 Fifa_Top_250_DF = pd.read_csv("/Users/brian/Documents/FIFA_Project_Final/Modified/players_21_22.csv",
                    usecols=['short_name', 'height_cm', 'overall','league_name', 'club_name','potential','age','work_rate','Season','value_eur',
                             'preferred_foot','club_position','skill_ball_control','player_positions','goalkeeping_reflexes','goalkeeping_speed','skill_dribbling','mentality_composure','wage_eur'],
@@ -19,9 +24,10 @@ print(Fifa_Top_250_DF.preferred_foot.value_counts())
 
 plt.figure(dpi=125)
 sns.countplot('preferred_foot', data=Fifa_Top_250_DF, palette='Blues')
-plt.xlabel('Players Preferred Foot ')
-plt.ylabel('Number of Players')
-plt.title('Players Preferred Foot of Players in top 250')
+#plt.legend(['Avg. Potential', 'Avg. Overall'], loc='upper right')
+plt.xlabel('The players preferred Foot ')
+plt.ylabel('Number of players')
+plt.title('The preferred foot of the top 250 players in the world')
 Right, Left = Fifa_Top_250_DF.preferred_foot.value_counts()
 print('Left Preferred', Left)
 print('Right Preferred', Right)
@@ -34,18 +40,16 @@ print("***************** Unique Clubs in the top 250 - End *********************
 fifa_20_top_attackers = Fifa_Top_250_DF[Fifa_Top_250_DF['club_position'].str.contains('ST|RW|LW|CF|LS|RS')==True]\
     .sort_values(by="overall", ascending=False)
 
-#print(fifa_20_top_attackers.head(20))
-
-
 print("***************** Merging Data Frames - Begin ************************")
 fifa_20_potential = Fifa_Top_250_DF[(Fifa_Top_250_DF.age.astype(int)>=18) & (Fifa_Top_250_DF.age.astype(int)<=40)].groupby(['age'])['potential'].mean()
 fifa_20_overall = Fifa_Top_250_DF[(Fifa_Top_250_DF.age.astype(int)>=18) & (Fifa_Top_250_DF.age.astype(int)<=40)].groupby(['age'])['overall'].mean()
 fifa_20_summary = pd.concat([fifa_20_potential, fifa_20_overall], axis=1)
 fig, ax = plt.subplots(figsize=(16, 8))
 ax.plot(fifa_20_summary)
-ax.set_xlabel("Age", fontsize=20)
-ax.set_ylabel("Rating in %", fontsize=20)
-ax.set_title("Player Average Rating by Age for top 250", fontsize=20)
+plt.legend(['Avg. Potential', 'Avg. Overall'], loc='upper right')
+ax.set_xlabel("Age")
+ax.set_ylabel("Avg. Potential Rating - Avg. Overall Rating in % ")
+ax.set_title("Player avg. Potential rating v avg. Overall rating by age for the top 250 players")
 #plt.show()
 
 print("***************** Merging Data Frames - End ************************")
@@ -81,9 +85,9 @@ sns.histplot(x="club_position",
              multiple="dodge",
              palette="plasma"
             )
-plt.xlabel('Players Positions')
-plt.ylabel('Number of Players')
-plt.title('Mentality of the Top 250 players by Position')
+plt.xlabel('Players positions')
+plt.ylabel('Number of players')
+plt.title('Mentality of the top 250 players by Position')
 #plt.show()
 print("********** Graph for top 250 Mentality - End ****************")
 
@@ -100,9 +104,9 @@ sns.histplot(x="club_position",
              multiple="dodge",
              palette="plasma"
             )
-plt.xlabel('Players Position')
-plt.ylabel('Number of Players')
-plt.title('Mentality of the Top 250 players who are subs')
+plt.xlabel('Players position')
+plt.ylabel('Number of players')
+plt.title('Mentality of the top 250 players who are subs')
 plt.show()
 print("********** The top subs of top 250 - End ****************")
 print("********** The top players in the top 250 under 23 - Begin ****************")
@@ -119,8 +123,8 @@ sns.histplot(x="league_name",
              palette="plasma"
             )
 plt.xlabel('League')
-plt.ylabel('Number of Players')
-plt.title('Leagues of players under 23 in the top 100')
+plt.ylabel('Number of players')
+plt.title('The leagues the players under 23 in the top 100 compete in')
 plt.show()
 print("********** The top players in the top 250 under 23 - End ****************")
 

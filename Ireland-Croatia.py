@@ -8,6 +8,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.rcParams['axes.labelsize'] = 14
+plt.rcParams['axes.titlesize'] = 14
+
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','long_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality_name','potential','dob','international_reputation'], index_col=[0])

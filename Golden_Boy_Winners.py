@@ -7,6 +7,12 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.titlesize'] = 15
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['legend.fontsize'] = 12
+
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayers_GB.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality_name','potential'], index_col=[0])

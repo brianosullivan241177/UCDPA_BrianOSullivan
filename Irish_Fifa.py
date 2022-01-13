@@ -7,6 +7,13 @@ import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.titlesize'] = 15
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['legend.fontsize'] = 12
+
+
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality_name','potential','international_reputation',])
@@ -52,7 +59,13 @@ Irish_PL_wages = Irish_Players_PL_DF.groupby('Season')['wage_eur'].agg(['mean', 
 Irish_PL_wages = Irish_PL_wages.sort_values(by = 'Season', ascending = True)
 
 fig = px.bar(Irish_PL_wages[0:10], x= Irish_PL_wages.index[0:10], y='mean') # will show up to 10 seasons
-fig.update_layout(title_text='Mean wages - Irish Players in the Premier League')
+fig.update_layout(title_text='Mean wages - Irish Players in the Premier League',
+                  font=dict(
+                      family="Courier New",
+                      size=18,
+                      color="Black"
+                  )
+                  )
 fig.update_xaxes(title_text="<b> Season </b>")
 fig.update_yaxes(title_text="<b> Mean Wages </b>")
 fig.show()
@@ -66,7 +79,13 @@ Irish_Excl_PL_wages = Irish_Players_Excl_PL_DF.groupby('Season')['wage_eur'].agg
 Irish_Excl_PL_wages = Irish_Excl_PL_wages.sort_values(by = 'Season', ascending = True)
 
 fig1 = px.bar(Irish_Excl_PL_wages[0:10], x= Irish_Excl_PL_wages.index[0:10], y='mean') # will show up to 10 seasons
-fig1.update_layout(title_text='Mean wages - Irish Players outside the Premier League')
+fig1.update_layout(title_text='Mean wages - Irish Players outside the Premier League',
+                  font=dict(
+                      family="Courier New",
+                      size=18,
+                      color="Black"
+                  )
+                   )
 fig1.update_xaxes(title_text="<b> Season </b>")
 fig1.update_yaxes(title_text="<b> Mean Wages </b>")
 fig1.show()
@@ -154,15 +173,14 @@ print("The fullback two is :", fullback2)
 
 print("*********************************************")
 
-
-
-
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==fullback1].index, inplace = True)
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==fullback2].index, inplace = True)
 
-
 Players_21_22_DF['centreback_mean']=Players_21_22_DF['movement_agility'] + Players_21_22_DF['pace']+ Players_21_22_DF['movement_reactions'] \
-                         + Players_21_22_DF['defending_sliding_tackle'] + Players_21_22_DF['defending']
+                         + Players_21_22_DF['defending_sliding_tackle'] + Players_21_22_DF['defending']+ Players_21_22_DF['power_strength'] + \
+                                    Players_21_22_DF['defending_marking_awareness'] + Players_21_22_DF['shooting'] + \
+                                    Players_21_22_DF['attacking_heading_accuracy']
+
 Players_21_22_DF
 
 def Country(x):
@@ -176,13 +194,15 @@ Country1 = Country("Republic of Ireland")
 print(Country1)
 centreback1=Country1.iloc[0][1]
 centreback2=Country1.iloc[1][1]
-print("The first wing back is :", centreback1)
-print("The second wing back is :", centreback2)
+print("The first centre back is :", centreback1)
+print("The second centre back is :", centreback2)
 
 
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']=='centreback_mean'].index, inplace = True)
 
-Players_21_22_DF['centremidfielder_mean']=Players_21_22_DF['dribbling'] + Players_21_22_DF['passing'] + Players_21_22_DF['pace'] + Players_21_22_DF['movement_agility']+ Players_21_22_DF['movement_reactions'] + Players_21_22_DF['movement_balance'] + Players_21_22_DF['attacking_short_passing']+ Players_21_22_DF['attacking_heading_accuracy']
+Players_21_22_DF['centremidfielder_mean']=Players_21_22_DF['dribbling'] + \
+                                          Players_21_22_DF['passing'] + Players_21_22_DF['pace'] +\
+                                          Players_21_22_DF['movement_agility']
 Players_21_22_DF
 
 
@@ -211,7 +231,11 @@ Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==centremid
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==centremidfielder2].index, inplace = True)
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==centremidfielder3].index, inplace = True)
 
-Players_21_22_DF['attackingmidfielder_mean']=Players_21_22_DF['attacking_finishing'] + Players_21_22_DF['passing'] + Players_21_22_DF['pace'] + Players_21_22_DF['attacking_heading_accuracy']+ Players_21_22_DF['attacking_short_passing'] + Players_21_22_DF['attacking_volleys'] + Players_21_22_DF['skill_curve']
+Players_21_22_DF['attackingmidfielder_mean']=Players_21_22_DF['attacking_finishing'] + \
+                                             Players_21_22_DF['passing'] + Players_21_22_DF['shooting'] + \
+                                             Players_21_22_DF['attacking_heading_accuracy']+ Players_21_22_DF['attacking_short_passing'] \
+                                             + Players_21_22_DF['attacking_volleys'] + \
+                                             Players_21_22_DF['skill_curve']
 Players_21_22_DF
 
 def Country(x):
@@ -232,7 +256,8 @@ print("The attackingmidfielder two is :", attackingmidfielder2)
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==attackingmidfielder1].index, inplace = True)
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==attackingmidfielder2].index, inplace = True)
 
-Players_21_22_DF['striker_mean']=Players_21_22_DF['attacking_finishing'] + Players_21_22_DF['attacking_heading_accuracy'] + Players_21_22_DF['attacking_crossing'] + Players_21_22_DF['pace'] + Players_21_22_DF['skill_curve'] + Players_21_22_DF['skill_fk_accuracy'] + Players_21_22_DF['movement_balance']
+Players_21_22_DF['striker_mean']=Players_21_22_DF['attacking_finishing'] + Players_21_22_DF['pace']
+
 Players_21_22_DF
 
 def Country(x):
@@ -242,7 +267,7 @@ def Country(x):
 Country1 = Country("Republic of Ireland")
 print(Country1)
 striker=Country1.iloc[0][1]
-print("The stricker is :", striker)
+print("The striker is :", striker)
 
 Players_21_22_DF.drop(Players_21_22_DF[Players_21_22_DF['short_name']==striker].index, inplace = True)
 

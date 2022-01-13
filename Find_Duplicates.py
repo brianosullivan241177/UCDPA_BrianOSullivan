@@ -1,9 +1,14 @@
 import pandas as pd
 import plotly.express as px
-import csv
-from csv import reader
-import seaborn as sns
 import matplotlib.pyplot as plt
+
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.titlesize'] = 15
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['legend.fontsize'] = 12
+
+
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/players_21_22.csv',
                            usecols=['sofifa_id','short_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
                                     'Season', 'height_cm','nationality_name','potential','goalkeeping_reflexes'], index_col=[0])
@@ -22,7 +27,14 @@ Duplicates_DF = duplicateRows_name_age_DF.groupby('short_name')['wage_eur'].agg(
 Duplicates_DF = duplicateRows_name_age_DF.sort_values(by = 'short_name', ascending = True)
 
 fig = px.bar(Duplicates_DF[0:10], x= Duplicates_DF.index[0:10], y='short_name') # will show up to 10 seasons
-fig.update_layout(title_text='Duplicate players based on short name, age and height')
+fig.update_layout(title_text='Duplicate players based on short name, age and height',
+                  font=dict(
+                      family="Courier New",
+                      size=18,
+                      color="Black"
+                  )
+                  )
+
 fig.update_yaxes(title_text="<b> Players </b>")
 fig.update_xaxes(title_text="<b> Wages in Euro </b>")
 fig.show()

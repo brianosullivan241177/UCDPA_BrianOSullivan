@@ -8,8 +8,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-plt.rcParams['axes.labelsize'] = 14
-plt.rcParams['axes.titlesize'] = 14
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.titlesize'] = 15
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['legend.fontsize'] = 12
 
 FifaAll_Players_DF = pd.read_csv('/users/brian/documents/FIFA_Project_Final/Modified/FIFAAllplayersM.csv',
                            usecols=['sofifa_id','short_name','long_name','league_name','club_name','wage_eur', 'overall','age','preferred_foot',
@@ -30,7 +33,7 @@ plot_order = Irish_Nationality_DF.sort_values(by=['Season'], inplace=True)
 #
 a = sns.catplot(data=Irish_Nationality_DF, x='Season',
                    y='Overall Rating in %', hue='Player Name', height=6, aspect=2, order=plot_order, kind="point")
-
+plt.subplots_adjust(top=0.9)
 plt.title('Irish players with an Overall rating  >= 78 in % by Season')
 #a = sns.catplot(data=Irish_Nationality_DF, x='Season',
                 #   y='Wages paid in Euro', hue='Player Name', height=6, aspect=2, order=plot_order, kind="point")
@@ -57,7 +60,7 @@ plot_order = Croatia_Nationality_DF.sort_values(by=['Season'], inplace=True)
 #
 a = sns.catplot(data=Croatia_Nationality_DF, x='Season',
                    y='Overall Rating in %', hue='Player Name', height=6, aspect=2, order=plot_order, kind="point")
-
+plt.subplots_adjust(top=0.9)
 plt.title('Croatian players with an Overall rating  >= 78 in % by Season')
 #a = sns.catplot(data=Croatia_Nationality_DF, x='Season',
  #                  y='Wages paid in Euro', hue='Player Name', height=6, aspect=2, order=plot_order, kind="point")
